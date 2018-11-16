@@ -5,30 +5,28 @@
   <button (click)="onClear()">Clear all</button>
 
   <table>
-      <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Set new quantity</th>
-          <th>Action</th>
-      </tr>
-      <tr *ngFor = "let item of items" change-background="red">
-              <cart-item [item]="item"></cart-item>
-      </tr>
-      <tr>
-          <th>Total items</th>
-          <th>{{totalItems}}</th>
-      </tr>
-      <tr>
-          <th>Total Price</th>
-          <th>{{getTotalPrice()}}</th>
-      </tr>
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Set new quantity</th>
+      <th>Action</th>
+    </thead>
+    <tbody *ngFor="let item of items">
+      <tr cart-item [item]="item" change-background="red"></tr>
+
+    </tbody>
+    <tr>
+      <th>Total items</th>
+      <th>{{totalItems}}</th>
+    </tr>
+    <tr>
+      <th>Total Price</th>
+      <th>{{getTotalPrice()}}</th>
+    </tr>
   </table>
-</div>
 
-<ng-template #emptyCartTemplate>
-  <header>
-    <span header-text>Products cart is empty</span>
-  </header>
-</ng-template>
-
-
+  <ng-template #emptyCartTemplate>
+    <header>
+      <span header-text>Products cart is empty</span>
+    </header>
+  </ng-template>

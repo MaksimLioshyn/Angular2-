@@ -4,7 +4,8 @@
 <td>{{product.isAvailable}}</td>
 <td>
     <div *ngIf="!!product.stores && product.stores.length > 0">
-        stores: {{product.stores}}</div>
+        {{product.stores}}
+    </div>
 </td>
 <td>
     <button (click)="onBuy()" [ngClass]="{'disabled': !product.isAvailable}">Add to cart</button>
