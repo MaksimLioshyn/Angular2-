@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener, ViewChild,ElementRef } from '@angular/core';
-import { ICartItem } from "app/cart/models/cart.item.model";
+import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { ICartItem } from '../models/cart.item.model';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,27 +8,20 @@ import { ICartItem } from "app/cart/models/cart.item.model";
 })
 export class CartItemComponent implements OnInit {
 
-@Input()  CartItem: ICartItem;
-@Output() update: EventEmitter<ICartItem>;
-@Output() delete: EventEmitter<number>;
+  @Input() CartItem: ICartItem;
+  @Output() update: EventEmitter<ICartItem>;
+  @Output() delete: EventEmitter<number>;
 
-@ViewChild('topelement') topelement: ElementRef;
-@HostBinding('class') class = 'task';
+  @ViewChild('topelement') topelement: ElementRef;
+  @HostBinding('class') class = 'task';
 
   @HostListener('mouseenter', ['$event']) onMouseEnter(event) {
-     console.log(event.target);
+    console.log(event.target);
   }
 
-@HostListener('click') clicked() {
+  @HostListener('click') clicked() {
     console.log('click event on host element');
-     (<HTMLDivElement>this.topelement.nativeElement).style.color = 'red';
-  }
-
-  @HostListener('mouseenter', ['$event']) enter(event: Event) {
-    //console.log('mouseenter event on host element');
-  }
-  @HostListener('mouseleave',  ['$event']) leave(event: Event) {
-  //  console.log('mouseleave event on host element');
+    (<HTMLDivElement>this.topelement.nativeElement).style.color = 'red';
   }
 
   constructor() {
@@ -43,15 +36,15 @@ export class CartItemComponent implements OnInit {
     console.log('On Destroy Hook');
   }
 
-  updateQuantity(updatedItem: {quantity: number}): void {
-    console.log('CartItemComponent, updateQuantity method:', this.CartItem, ", event=",updatedItem.quantity);
-    this.CartItem.quantity = +updatedItem.quantity ;
+  updateQuantity(updatedItem: { quantity: number }): void {
+    console.log('CartItemComponent, updateQuantity method:', this.CartItem, ", event=", updatedItem.quantity);
+    this.CartItem.quantity = +updatedItem.quantity;
     console.log('CartItemComponent, updatedItem =', this.CartItem);
     this.update.emit(this.CartItem);
   }
 
   deleteItem(): void {
     console.log('CartItemComponent, deleteItem method:', this.CartItem);
-      this.delete.emit(this.CartItem.id);
+    this.delete.emit(this.CartItem.id);
   }
 }

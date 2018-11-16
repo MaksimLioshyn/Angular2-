@@ -8,7 +8,6 @@ export interface ICartItem{
     onClearance : boolean;
 }
 
-
 export class CartItem implements ICartItem{
  
   constructor(

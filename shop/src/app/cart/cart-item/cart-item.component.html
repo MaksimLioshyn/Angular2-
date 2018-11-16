@@ -1,8 +1,8 @@
 <div #topelement> 
 <div>id: {{CartItem.id}}</div>
 <div>name: {{CartItem.name}}</div>
-<div [ngClass]="{clearance : CartItem.onClearance} ">price: {{CartItem.price}}</div>
-<div>quantity: <input value="{{CartItem.quantity}}" placeholder="quantity" #quantity/></div>
+<div [ngClass]="{clearance : CartItem.onClearance} ">Price: {{CartItem.price}}</div>
+<div>Quantity: <input value="{{CartItem.quantity}}" placeholder="quantity" #quantity/></div>
 </div>
 
 <div><button (click)='updateQuantity({"quantity": quantity.value}); $event.stopPropagation()'>Update quantity</button></div>
