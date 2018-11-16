@@ -1,71 +1,54 @@
-import { Injectable } from '@angular/core';
-import { ICartItem, CartItem } from './models/cart.item.model';
-
-export interface Info {
-    total: number;
-    totalSum: number;
-}
+import {Injectable} from "@angular/core";
+import {CartItem, ICartItem} from "./model/cart-item.model";
+import {Product} from "../product/model/product";
 
 @Injectable()
 export class CartService {
 
-    idx: number;
-    cartItems: Array<ICartItem>;
+  private sum: (prev: number, curr: number) => number = (p, c) => p + c;
+  private items: Array<CartItem> = [];
 
-    info: Info = { total: 0, totalSum: 0 };
+  size() : number {
+    return this.items.length;
+  }
 
-    constructor() {
-        this.idx = 1;
 
-        this.cartItems = [
-            new CartItem(this.idx++, 'cart item 1', 1, 10, false),
-            new CartItem(this.idx++, 'cart item 2', 2, 20, true),
-            new CartItem(this.idx++, 'cart item 3', 4, 30, true)
-        ];
+  isEmpty(): boolean {
+    return this.items.length === 0;
+  }
 
-        this.updateTotals();
+  getAll(): Array<CartItem> {
+    return this.items;
+  }
+
+  addProduct(product: Product): void {
+    const item: CartItem = this.getById(product.id);
+    if (item) {
+      item.quantity++;
+    } else {
+      this.items.push(new CartItem(product.id, product.name, product.price, 1));
     }
+  }
 
-    getCartItems(): Array<ICartItem> {
-        return this.cartItems;
-    }
+  getById(id: number): CartItem {
+    return this.items.find(item => item.id === id);
+  }
 
-    create(name: string, quantity: number) {
-        this.cartItems.push(new CartItem(this.idx++, name, quantity));
+  remove(item: CartItem): boolean {
+    const i: number = this.items.findIndex(i => i.id === item.id);
+    if (i > -1) {
+      this.items.splice(i, 1);
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    update(item: ICartItem): void {
-        console.log('CartService, update method:', item);
-        var found = this.cartItems.find(c => c.id == item.id);
-        if (found != null) {
-            found.quantity = item.quantity;
-            this.updateTotals();
-        }
-    }
+  clear(): void {
+    this.items = [];
+  }
 
-    delete(id: number): void {
-        console.log('CartService, delete method:', id);
-        var found = this.cartItems.find(c => c.id == id);
-        if (found != null) {
-            console.log('Delete!');
-            var index = this.cartItems.indexOf(found);
-            this.cartItems.splice(index, 1);
-            this.updateTotals();
-        }
-    }
-
-    private countCartSum() {
-        this.info.totalSum = 0;
-        this.cartItems.forEach(s => this.info.totalSum += s.quantity * s.price);
-    }
-
-    private countItemsQuantityInCart() {
-        this.info.total = 0;
-        this.cartItems.forEach(s => this.info.total += s.quantity);
-    }
-
-    private updateTotals() {
-        this.countItemsQuantityInCart();
-        this.countCartSum();
-    }
+  getTotalPrice() : number {
+    return this.items.map(i=> i.quantity * i.price).reduce(this.sum, 0);
+  }
 }

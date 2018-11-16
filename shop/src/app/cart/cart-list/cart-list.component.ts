@@ -1,47 +1,50 @@
-import { Component, OnInit, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
-import { ICartItem } from '../models/cart.item.model';
-import { CartItemComponent } from '../cart-item/cart-item.component';
-import { CartService, Info } from '../cart.service';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {CartService} from "../cart.service";
+import {CartItem, ICartItem} from "../model/cart-item.model";
+import {CartItemComponent} from "../cart-item/cart-item.component";
 
 @Component({
-  selector: 'app-cart-list',
+  selector: 'cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
-export class CartListComponent implements OnInit {
-  
-  items: Array<ICartItem>;
-  info: Info;
-  
-  @ViewChild('label') labelField: ElementRef;
-  @ViewChild(CartItemComponent) child: CartItemComponent;
-  @ViewChild('child') childComp: ElementRef;
+export class CartListComponent implements OnInit, AfterViewInit {
 
-  ngAfterViewInit() {
-    (<HTMLLabelElement>this.labelField.nativeElement).textContent = 'loaded';
-  }
+  @ViewChildren(CartItemComponent) itemComponents: QueryList<CartItemComponent>;
+  items: Array<CartItem>;
+  totalItems: number;
 
-  @Output() update: EventEmitter<ICartItem>;
   constructor(private cartService: CartService) {
-    this.info = cartService.info;
-    console.log('CartListComponent, constructor, this.info.total=' + this.info.total);
   }
 
   ngOnInit() {
-    this.items = this.cartService.getCartItems();
+    this.items = this.cartService.getAll();
   }
 
-  ngOnDestroy(): void {
-    console.log('On Destroy Hook');
+  ngAfterViewInit() {
+    this.setTotalItems();
+    this.itemComponents.changes.subscribe((r) => {
+      this.setTotalItems();
+    });
   }
 
-  onUpdateItem(item: ICartItem): void {
-    console.log('CartListComponent::onUpdateItem, item', item);
-    this.cartService.update(item);
+  setTotalItems() {
+    setTimeout(() => {
+      this.totalItems = this.itemComponents.length;
+    });
   }
 
-  onDeleteItem(id: number): void {
-    console.log('CartListComponent::onDeleteItem, item', id);
-    this.cartService.delete(id);
+  onClear(): void {
+    this.cartService.clear();
   }
+
+  isEmpty(): boolean {
+    return this.cartService.isEmpty();
+  }
+
+  getTotalPrice(): number {
+    return this.cartService.getTotalPrice();
+  }
+
+
 }

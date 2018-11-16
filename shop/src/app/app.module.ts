@@ -1,21 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { CartModule } from './cart/cart.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { ProductService } from './product/product.service';
-import { ProductComponent } from './product/product.component';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {ProductModule} from "./product/product.module";
+import {CartModule} from "./cart/cart.module";
+import {FormsModule} from "@angular/forms";
+import {HeaderModule} from "./header/header.module";
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProductComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    CartModule
+    FormsModule,
+    AppRoutingModule,
+    ProductModule,
+    CartModule,
+      HeaderModule
+
   ],
-  providers: [ProductService],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

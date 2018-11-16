@@ -1,13 +1,23 @@
-<div>
-  <div>Cart items <label #label></label></div>
-  <div ng-model="summaryClass">
-       <app-cart-item #child
-        *ngFor="let it of items" 
-        [CartItem]="it"
-        (update)="onUpdateItem(it)"
-        (delete)="onDeleteItem(it.id)"
-       ></app-cart-item>
-  </div>
-  <div ng-class="summaryClass">Total items: {{info.total}}</div> 
-  <div>Cart summary: {{info.totalSum}}</div> 
+<div *ngIf="!isEmpty(); else emptyCartTemplate">
+  <header>
+    <span header-text>Items in the cart:</span>
+  </header>
+  <button (click)="onClear()">Clear all</button>
+  <ul>
+    <li *ngFor="let item of items">
+      <div change-background="blue">
+        <cart-item [item]="item"></cart-item>
+      </div>
+    </li>
+  </ul>
+  <span>Total items: {{totalItems}}</span>
+  <span>Total Price: {{getTotalPrice()}}</span>
 </div>
+
+<ng-template #emptyCartTemplate>
+  <header>
+    <span header-text>Products cart is empty</span>
+  </header>
+</ng-template>
+
+

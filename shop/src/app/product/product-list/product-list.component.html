@@ -1,0 +1,8 @@
+<header>
+  <span header-text>Product list:</span>
+</header>
+<ul>
+  <li *ngFor="let product of products">
+    <product-item [product]="product" (addToCart)="onAddToCart($event)"></product-item>
+  </li>
+</ul>
