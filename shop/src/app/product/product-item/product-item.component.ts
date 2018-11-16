@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Product} from "../model/product";
+import {Product} from "../models/product.model";
 
 @Component({
-  selector: 'product-item',
+  selector: '[product-item]',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css']
 })

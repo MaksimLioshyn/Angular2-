@@ -1,24 +1,23 @@
-import {Injectable} from "@angular/core";
-import {CartItem, ICartItem} from "./model/cart-item.model";
-import {Product} from "../product/model/product";
+import { Injectable } from "@angular/core";
+import { CartItem } from "./models/cart-item.model";
+import { Product } from "../product/models/product.model";
 
 @Injectable()
 export class CartService {
 
   private sum: (prev: number, curr: number) => number = (p, c) => p + c;
-  private items: Array<CartItem> = [];
+  private cartItems: Array<CartItem> = [];
 
-  size() : number {
-    return this.items.length;
+  size(): number {
+    return this.cartItems.length;
   }
 
-
   isEmpty(): boolean {
-    return this.items.length === 0;
+    return this.cartItems.length === 0;
   }
 
   getAll(): Array<CartItem> {
-    return this.items;
+    return this.cartItems;
   }
 
   addProduct(product: Product): void {
@@ -26,18 +25,18 @@ export class CartService {
     if (item) {
       item.quantity++;
     } else {
-      this.items.push(new CartItem(product.id, product.name, product.price, 1));
+      this.cartItems.push(new CartItem(product.id, product.name, product.price, 1));
     }
   }
 
   getById(id: number): CartItem {
-    return this.items.find(item => item.id === id);
+    return this.cartItems.find(item => item.id === id);
   }
 
   remove(item: CartItem): boolean {
-    const i: number = this.items.findIndex(i => i.id === item.id);
+    const i: number = this.cartItems.findIndex(i => i.id === item.id);
     if (i > -1) {
-      this.items.splice(i, 1);
+      this.cartItems.splice(i, 1);
       return true;
     } else {
       return false;
@@ -45,10 +44,10 @@ export class CartService {
   }
 
   clear(): void {
-    this.items = [];
+    this.cartItems = [];
   }
 
-  getTotalPrice() : number {
-    return this.items.map(i=> i.quantity * i.price).reduce(this.sum, 0);
+  getTotalPrice(): number {
+    return this.cartItems.map(i => i.quantity * i.price).reduce(this.sum, 0);
   }
 }

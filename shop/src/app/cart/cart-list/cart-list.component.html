@@ -3,15 +3,26 @@
     <span header-text>Items in the cart:</span>
   </header>
   <button (click)="onClear()">Clear all</button>
-  <ul>
-    <li *ngFor="let item of items">
-      <div change-background="blue">
-        <cart-item [item]="item"></cart-item>
-      </div>
-    </li>
-  </ul>
-  <span>Total items: {{totalItems}}</span>
-  <span>Total Price: {{getTotalPrice()}}</span>
+
+  <table>
+      <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Set new quantity</th>
+          <th>Action</th>
+      </tr>
+      <tr *ngFor = "let item of items" change-background="red">
+              <cart-item [item]="item"></cart-item>
+      </tr>
+      <tr>
+          <th>Total items</th>
+          <th>{{totalItems}}</th>
+      </tr>
+      <tr>
+          <th>Total Price</th>
+          <th>{{getTotalPrice()}}</th>
+      </tr>
+  </table>
 </div>
 
 <ng-template #emptyCartTemplate>

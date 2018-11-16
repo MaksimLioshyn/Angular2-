@@ -1,8 +1,16 @@
 <header>
   <span header-text>Product list:</span>
 </header>
-<ul>
-  <li *ngFor="let product of products">
-    <product-item [product]="product" (addToCart)="onAddToCart($event)"></product-item>
-  </li>
-</ul>
+
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Is Available</th>
+    <th>Action</th>
+  </thead>
+  <tbody *ngFor="let product of products">
+      <tr product-item [product]="product" (addToCart)="onAddToCart($event)"></tr>
+  </tbody>
+</table>

@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {CartService} from "../cart.service";
-import {CartItem, ICartItem} from "../model/cart-item.model";
-import {CartItemComponent} from "../cart-item/cart-item.component";
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { CartService } from "../cart.service";
+import { CartItem } from "../models/cart-item.model";
+import { CartItemComponent } from "../cart-item/cart-item.component";
 
 @Component({
   selector: 'cart-list',
@@ -14,8 +14,9 @@ export class CartListComponent implements OnInit, AfterViewInit {
   items: Array<CartItem>;
   totalItems: number;
 
-  constructor(private cartService: CartService) {
-  }
+  constructor(
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
     this.items = this.cartService.getAll();
@@ -45,6 +46,4 @@ export class CartListComponent implements OnInit, AfterViewInit {
   getTotalPrice(): number {
     return this.cartService.getTotalPrice();
   }
-
-
 }

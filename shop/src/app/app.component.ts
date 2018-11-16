@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {CartService} from "./cart/cart.service";
+import { Component } from '@angular/core';
+import { CartService } from "./cart/cart.service";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private cartService: CartService) {
   }
 
-  cartSize() : number {
+  cartSize(): number {
     return this.cartService.size();
   }
 
