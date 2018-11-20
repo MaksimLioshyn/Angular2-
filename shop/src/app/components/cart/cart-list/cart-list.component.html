@@ -4,31 +4,24 @@
     <ul>
       <li *ngFor="let item of items">
         <ul>
-          <li>Id: {{item.id}}</li>
-          <li>name: {{item.name}}</li>
+          <li>Id: {{ item.id }}</li>
+          <li>name: {{ item.name }}</li>
 
-          <ng-template [ngIf]="item.products.length > 0" [ngIfElse]="emptyBasket">
-              <div>
-                  <li *ngFor="let product of item.products">
-                      <ul>
-                        <li>Id: {{product.id}}</li>
-                        <li>name: {{product.name}}</li>
-                        <li>description: {{product.description}}</li>
-                        <li>price: {{product.price}}</li>
-                        <li>category: {{product.category}}</li>
-                        <li>isAvailable: {{product.isAvailable}}</li>
-                        <li>label: {{product.label}}</li>
-                      </ul>
-                    </li>
-              </div>
-            </ng-template>
+          <div *ngIf="item.products.length > 0; else: emptyBasket1">
+            <li *ngFor="let product of item.products">
+              <ul>
+                <li>Id: {{ product.id }}</li>
+                <li>name: {{ product.name }}</li>
+                <li>description: {{ product.description }}</li>
+                <li>price: {{ product.price }}</li>
+                <li>category: {{ product.category }}</li>
+                <li>isAvailable: {{ product.isAvailable }}</li>
+                <li>label: {{ product.label }}</li>
+              </ul>
+            </li>
+          </div>
 
-            <ng-template #emptyBasket>
-              <div>
-                Basket is empty.
-              </div>
-            </ng-template>
-
+          <ng-template #emptyBasket1> <div>Basket is empty.</div> </ng-template>
         </ul>
       </li>
     </ul>
