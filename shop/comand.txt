@@ -11,3 +11,9 @@ ng g cl product/models/product.model --spec=false
 ng g m product/product.services -m product --spec false --flat true
 ng g c product/product-list -m=product
 ng g c product/product-item -m=product
+
+ng g m core --routing -m app --spec false
+ng g s core/services/LocalStorage --spec false
+ng g s core/services/ConfigOptions --spec false
+ng g s core/services/Constants --spec false
+ng g s core/services/Generator --spec false

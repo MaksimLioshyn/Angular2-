@@ -1,3 +1,12 @@
-<p>
-  cart-item works!
-</p>
+<td>
+  {{item.name}}
+</td>
+<td>
+  {{item.price}}
+</td>
+<td>
+  <input type="text" name="quantity" [(ngModel)]="item.quantity">
+</td>
+<td>
+  <button (click)="onRemove()">Remove</button>
+</td>
