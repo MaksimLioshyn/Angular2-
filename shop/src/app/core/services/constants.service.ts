@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ConstantsService {
-
-  constructor() { }
+  constructor(public Application: string,
+    public Version: string) {
+  }
 }

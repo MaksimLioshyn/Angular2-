@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ConfigOptionsService {
 
-  constructor() { }
+  constructor(private id: number,
+    private login: string,
+    private email: string) {
+  }
+
 }
