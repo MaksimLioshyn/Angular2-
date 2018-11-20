@@ -1,13 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {LocalStorageService} from './services/local-storage.service';
+import {ChangeBackgroundDirective} from './directive/change-background.directive';
+import {ChangeFontWeightDirective} from './directive/change-font-weight.directive';
+import {ConfigOptionsService} from './services/config-options.service';
 
-import { CoreRoutingModule } from './core-routing.module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    CoreRoutingModule
+  imports: [],
+  declarations: [
+    ChangeBackgroundDirective,
+    ChangeFontWeightDirective
+  ],
+  exports: [
+    ChangeBackgroundDirective,
+    ChangeFontWeightDirective
+  ],
+  providers: [
+    LocalStorageService
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+}
