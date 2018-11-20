@@ -1,0 +1,7 @@
+cd shop
+
+ng g m cart --routing -m app --spec false
+ng g cl cart/models/cart.model --spec=false
+ng g m cart/cart-services -m cart --spec false --flat true
+ng g c cart/cart-list --spec=false -m=cart
+ng g c cart/cart-item --spec=false -m=cart
