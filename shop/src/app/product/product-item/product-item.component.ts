@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Optional, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../models/product.model';
 import {CHARACTERS_09, GeneratorService, GeneratorServiceFactory} from '../../core/services/generator.service';
+import { ConfigOptionsService } from '../../core/services/config-options.service';
 
 @Component({
   selector: '[app-product-item]',
@@ -17,15 +18,18 @@ export class ProductItemComponent implements OnInit {
   hash: string;
 
   constructor(
-    private generatorService: GeneratorService) {
-    this.hash = this.generatorService.generate();
+    @Optional() private generatorService: GeneratorService,
+    @Optional() private configOptionsService: ConfigOptionsService
+    ) {
   }
 
   ngOnInit() {
+    this.hash = this.generatorService.generate();
   }
 
   onBuy() {
     this.addToCart.emit(this.product);
+    this.configOptionsService.localStorageService.setItem(this.product.id.toString(), this.hash);
   }
 
 }

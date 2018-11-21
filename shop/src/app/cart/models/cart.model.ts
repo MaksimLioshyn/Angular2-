@@ -10,6 +10,6 @@ export class Cart implements ICart {
     public id: number,
     public name: string,
     public price: number,
-    public quantity: number
+    public quantity: number,
   ) {}
 }

@@ -9,10 +9,11 @@
       <th>Name</th>
       <th>Price</th>
       <th>Set new quantity</th>
+      <th>Hash</th>
       <th>Action</th>
     </thead>
     <tbody *ngFor="let item of items">
-      <tr app-cart-item [item]="item" change-background="red"></tr>
+      <tr app-cart-item [item]="item" appChangeBackground="red"></tr>
     </tbody>
     <tr>
       <th>Total items</th>

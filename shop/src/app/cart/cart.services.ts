@@ -5,11 +5,11 @@ import {Product} from '../product/models/product.model';
 @Injectable()
 export class CartService {
 
+  private items: Array<ICart> = [];
+  private sum: (previous: number, current: number) => number = (p, c) => p + c;
+
   constructor() {
   }
-  private items: Array<ICart> = [];
-
-  private sum: (prev: number, curr: number) => number = (p, c) => p + c;
 
   size(): number {
     return this.items.length;

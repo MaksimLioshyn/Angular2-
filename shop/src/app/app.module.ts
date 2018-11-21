@@ -26,7 +26,7 @@ import { CoreModule } from './core/core.module';
     ConfigOptionsService,
     {
       provide: ConstantsService,
-      useValue: new ConstantsService('Shop', '1.0.0.0')
+      useValue: new ConstantsService('Shop ConstantsService useValue', '1.0.0.0')
     }
   ],
 

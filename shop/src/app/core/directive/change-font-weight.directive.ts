@@ -1,11 +1,11 @@
 import {Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 @Directive({
-  selector: '[change-font-weight]'
+  selector: '[appChangeFontWeight]'
 })
 export class ChangeFontWeightDirective {
 
-  @Input('change-font-weight') font: string;
+  @Input('appChangeFontWeight') font: string;
   private el: HTMLElement;
 
   constructor(el: ElementRef) {

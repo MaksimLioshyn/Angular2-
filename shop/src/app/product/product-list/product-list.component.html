@@ -7,11 +7,12 @@
     <th>Name</th>
     <th>Description</th>
     <th>Price</th>
+    <th>Hash</th>
     <th>Is Available</th>
     <th>Stores</th>
     <th>Action</th>
   </thead>
   <tbody *ngFor="let product of products">
-      <tr app-product-item [product]="product" (addToCart)="onAddToCart($event)"></tr>
+      <tr app-product-item [product]="product" (addToCart)="onAddToCart($event)" appChangeFontWeight="bold"></tr>
   </tbody>
 </table>

@@ -2,12 +2,12 @@ import {Directive, HostBinding, HostListener, Input, OnInit} from '@angular/core
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 
 @Directive({
-  selector: '[change-background]'
+  selector: '[appChangeBackground]'
 })
 export class ChangeBackgroundDirective implements OnInit {
 
   @HostBinding('style.background-color') backgroundColor;
-  @Input('change-background') color: string;
+  @Input('appChangeBackground') color: string;
 
   private sanitizer;
   private safeStyle: SafeStyle;

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Optional } from '@angular/core';
 import { CartService } from '../cart.services';
 import { Cart, ICart } from '../models/cart.model';
 import { GeneratorService } from '../../core/services/generator.service';
+import { ConfigOptionsService } from '../../core/services/config-options.service';
 
 @Component({
   selector: '[app-cart-item]',
@@ -14,12 +15,14 @@ export class CartItemComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    @Optional() private generatorService: GeneratorService
+    @Optional() private configOptionsService: ConfigOptionsService
   ) {
-    this.hash = this.generatorService && this.generatorService.generate();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.hash);
+    this.hash = this.configOptionsService.localStorageService.getItem(this.item.id.toString());
+  }
 
   onRemove(): void {
     this.cartService.remove(this.item);
