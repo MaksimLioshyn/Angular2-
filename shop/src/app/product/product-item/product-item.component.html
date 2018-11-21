@@ -1,3 +1,12 @@
-<p>
-  product-item works!
-</p>
+<td>{{product.name}}</td>
+<td>{{product.description}}</td>
+<td>{{product.price}}</td>
+<td>{{product.isAvailable}}</td>
+<td>
+    <div *ngIf="!!product.stores && product.stores.length > 0">
+        {{product.stores}}
+    </div>
+</td>
+<td>
+    <button (click)="onBuy()" [ngClass]="{'disabled': !product.isAvailable}">Add to cart</button>
+</td>

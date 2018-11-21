@@ -1,3 +1,17 @@
-<p>
-  product-list works!
-</p>
+<header>
+  <span header-text>Product list:</span>
+</header>
+
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Is Available</th>
+    <th>Stores</th>
+    <th>Action</th>
+  </thead>
+  <tbody *ngFor="let product of products">
+      <tr app-product-item [product]="product" (addToCart)="onAddToCart($event)"></tr>
+  </tbody>
+</table>

@@ -8,14 +8,14 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartService } from './cart.services';
 
 @NgModule({
-  declarations: [
-    CartListComponent,
-    CartItemComponent
-  ],
   imports: [
     CommonModule,
     CoreModule,
     FormsModule
+  ] ,
+  declarations: [
+    CartListComponent,
+    CartItemComponent
   ],
   providers: [CartService],
   exports: [CartListComponent]
