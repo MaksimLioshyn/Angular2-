@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-import {CoreModule} from '../core/core.module';
+import { CoreModule } from '../core/core.module';
 import { CartListComponent } from './cart-list/cart-list.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartService } from './cart.services';
@@ -14,11 +14,10 @@ import { CartService } from './cart.services';
   ],
   imports: [
     CommonModule,
-    CartService,
     CoreModule,
     FormsModule
   ],
   providers: [CartService],
   exports: [CartListComponent]
 })
-export class CartModule { }
+export class CartModule {}

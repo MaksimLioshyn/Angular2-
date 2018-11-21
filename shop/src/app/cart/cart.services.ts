@@ -1,6 +1,4 @@
-import { NgModule, Injectable } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import {Injectable } from '@angular/core';
 import {Cart, ICart} from './models/cart.model';
 import {Product} from '../product/models/product.model';
 
@@ -16,7 +14,6 @@ export class CartService {
   size(): number {
     return this.items.length;
   }
-
 
   isEmpty(): boolean {
     return this.items.length === 0;
@@ -40,8 +37,7 @@ export class CartService {
   }
 
   remove(item: ICart): boolean {
-    // tslint:disable-next-line:no-shadowed-variable
-    const i: number = this.items.findIndex(i => i.id === item.id);
+    const i: number = this.items.findIndex(index => index.id === item.id);
     if (i > -1) {
       this.items.splice(i, 1);
       return true;
