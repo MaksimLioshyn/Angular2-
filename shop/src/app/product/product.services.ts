@@ -13,7 +13,7 @@ export class ProductServices {
     new Product(6, 'HP ProBook', 'HP ProBook', 12000, true, ['Comfy', 'Eldorado', 'PSShop'])
   ];
 
-  getAll(): Array<Product> {
-    return this.products;
+  getAll(): Promise<Array<Product>> {
+    return new Promise<Array<Product>>((resolve, reject) => setTimeout(() => resolve(this.products), 1000));
   }
 }

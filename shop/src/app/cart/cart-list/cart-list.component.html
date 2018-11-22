@@ -1,32 +1,52 @@
-<div *ngIf="!isEmpty(); else emptyCartTemplate">
-  <header>
-    <span header-text>Items in the cart:</span>
-  </header>
+<div *ngIf="!isEmpty(); else: emptyCartTemplate">
+  <header><span header-text>Items in the cart:</span></header>
   <button (click)="onClear()">Clear all</button>
 
   <table>
     <thead>
+      <tr>
+        <th>Order by</th>
+        <th>
+          <select [(ngModel)]="orderBy">
+            <option value="name" selected>Product name</option>
+            <option value="price">Price</option>
+            <option value="quantity">Quantity</option>
+          </select>
+        </th>
+        <th>
+          <input
+            type="radio"
+            name="direction"
+            (change)="onDirectionChange(true)"
+          />Asc
+          <input
+            type="radio"
+            name="direction"
+            (change)="onDirectionChange(false)"
+          />Desc
+        </th>
+      </tr>
       <th>Name</th>
       <th>Price</th>
       <th>Set new quantity</th>
       <th>Hash</th>
       <th>Action</th>
     </thead>
-    <tbody *ngFor="let item of items">
+
+    <tbody *ngFor="let item of (items | sortItem: orderBy:sortingDirection)">
       <tr app-cart-item [item]="item" appChangeBackground="red"></tr>
     </tbody>
     <tr>
       <th>Total items</th>
-      <th>{{totalItems}}</th>
+      <th>{{ totalItems }}</th>
     </tr>
     <tr>
       <th>Total Price</th>
-      <th>{{getTotalPrice()}}</th>
+      <th>{{ getTotalPrice() }}</th>
     </tr>
   </table>
 
   <ng-template #emptyCartTemplate>
-    <header>
-      <span header-text>Products cart is empty</span>
-    </header>
+    <header><span header-text>Products cart is empty</span></header>
   </ng-template>
+</div>

@@ -1,6 +1,6 @@
-<td>{{product.name}}</td>
+<td>{{product.name | uppercase}}</td>
 <td>{{product.description}}</td>
-<td>{{product.price}}</td>
+<td>{{product.price | currency: 'Тугрики'}}</td>
 <td>{{hash}}</td>
 <td>{{product.isAvailable}}</td>
 <td>
@@ -9,5 +9,5 @@
     </div>
 </td>
 <td>
-    <button (click)="onBuy()" [ngClass]="{'disabled': !product.isAvailable}">Add to cart</button>
+    <button (click)="onBuy()" [disabled]="!product.isAvailable">Add to cart</button>
 </td>

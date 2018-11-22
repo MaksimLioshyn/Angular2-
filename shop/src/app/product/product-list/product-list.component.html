@@ -1,9 +1,29 @@
-<header>
-  <span header-text>Product list:</span>
-</header>
+<header><span header-text>Product list:</span></header>
 
 <table>
   <thead>
+    <tr>
+      <th>Order by</th>
+      <th>
+        <select [(ngModel)]="orderBy">
+          <option value="name" selected>Product name</option>
+          <option value="price">Price</option>
+          <option value="quantity">Quantity</option>
+        </select>
+      </th>
+      <th>
+        <input
+          type="radio"
+          name="direction"
+          (change)="onDirectionChange(true)"
+        />Asc
+        <input
+          type="radio"
+          name="direction"
+          (change)="onDirectionChange(false)"
+        />Desc
+      </th>
+    </tr>
     <th>Name</th>
     <th>Description</th>
     <th>Price</th>
@@ -12,7 +32,16 @@
     <th>Stores</th>
     <th>Action</th>
   </thead>
-  <tbody *ngFor="let product of products">
-      <tr app-product-item [product]="product" (addToCart)="onAddToCart($event)" appChangeFontWeight="bold"></tr>
+  <tbody
+    *ngFor="
+      let product of (products | async | sortItem: orderBy:sortingDirection)
+    "
+  >
+    <tr
+      app-product-item
+      [product]="product"
+      (addToCart)="onAddToCart($event)"
+      appChangeFontWeight="bold"
+    ></tr>
   </tbody>
 </table>

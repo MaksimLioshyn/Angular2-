@@ -13,6 +13,8 @@ export class CartListComponent implements OnInit, AfterViewInit {
   @ViewChildren(CartItemComponent) itemComponents: QueryList<CartItemComponent>;
   items: Array<ICart>;
   totalItems: number;
+  orderBy: string;
+  sortingDirection: boolean;
 
   constructor(private cartService: CartService) {
   }
@@ -46,5 +48,8 @@ export class CartListComponent implements OnInit, AfterViewInit {
     return this.cartService.getTotalPrice();
   }
 
+  onDirectionChange(value: boolean) {
+    this.sortingDirection = value;
+  }
 
 }

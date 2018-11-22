@@ -20,3 +20,5 @@ ng g s core/services/Generator --spec false
 
 ng g d core/directive/ChangeBackground --spec false
 ng g d core/directive/ChangeFontWeight --spec false
+
+ng g p core/pipes/sort-item --spec false

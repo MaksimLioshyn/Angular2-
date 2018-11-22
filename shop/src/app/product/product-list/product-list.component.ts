@@ -10,7 +10,9 @@ import {CartService} from '../../cart/cart.services';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Array<Product>;
+  products: Promise<Array<Product>>;
+  orderBy: string;
+  sortingDirection: boolean;
 
   constructor(
     private productService: ProductServices,
@@ -19,11 +21,16 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.products = this.productService.getAll();
+    this.sortingDirection = false;
   }
 
   onAddToCart(product: Product): void {
     if (product.isAvailable) {
       this.cartService.addProduct(product);
     }
+  }
+
+  onDirectionChange(value: boolean) {
+    this.sortingDirection = value;
   }
 }
