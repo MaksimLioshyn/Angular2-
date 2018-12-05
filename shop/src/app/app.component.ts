@@ -1,6 +1,6 @@
-import {Component, Optional} from '@angular/core';
-import {CartService} from './cart/cart.services';
-import {ConstantsService} from './core/services/constants.service';
+import { Component, Inject, Optional } from '@angular/core';
+import { CartService } from './cart/cart.services';
+import { CONSTANTS, ConstantsService } from './core/services/constants.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,9 @@ export class AppComponent {
   today: number = Date.now();
 
   constructor(private cartService: CartService,
-              private constantsService: ConstantsService) {
-    this.application = this.constantsService.Application;
-    this.version = this.constantsService.Version;
+    @Inject(CONSTANTS) private CONSTANT: ConstantsService) {
+    this.application = CONSTANT.Application;
+    this.version = CONSTANT.Version;
   }
 
   cartSize(): number {

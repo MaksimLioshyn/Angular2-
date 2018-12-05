@@ -12,7 +12,7 @@ export class SortItemPipe implements PipeTransform {
       objectsCopy.sort(function (a, b) {
         const aValue = a[orderBy];
         const bValue = b[orderBy];
-         if (aValue === bValue) { return 0; }
+        if (aValue === bValue) { return 0; }
         if (aValue < bValue) { return isAsk ? -1 : 1; }
         if (aValue > bValue) { return isAsk ? 1 : -1; }
         return 0;
