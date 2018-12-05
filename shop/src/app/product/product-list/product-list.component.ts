@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../models/product.model';
 import {ProductServices} from '../product.services';
 import {CartService} from '../../cart/cart.services';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -14,10 +15,10 @@ export class ProductListComponent implements OnInit {
   orderBy: string;
   sortingDirection: boolean;
 
-  constructor(
-    private productService: ProductServices,
-    private cartService: CartService
-    ) {  }
+  constructor(private productService: ProductServices,
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router) {}
 
   ngOnInit() {
     this.products = this.productService.getAll();
@@ -32,5 +33,9 @@ export class ProductListComponent implements OnInit {
 
   onDirectionChange(value: boolean) {
     this.sortingDirection = value;
+  }
+
+  onView(id: number): void {
+    this.router.navigate([{outlets: {product: [id]}}], {relativeTo: this.route});
   }
 }

@@ -10,17 +10,25 @@ import {CONSTANTS} from './core/services/constants.service';
 import { CartModule } from './cart/cart.module';
 import { ConfigOptionsService } from './core/services/config-options.service';
 import { CoreModule } from './core/core.module';
+import { PathNotFoundComponent } from './shared/path-not-found/path-not-found.component';
+import { LoginFormComponent } from './shared/login-form/login-form.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    PathNotFoundComponent,
+    LoginFormComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
-    AppRoutingModule,
-    ProductModule,
+    CoreModule,
+
     CartModule,
-    CoreModule
+    ProductModule,
+
+    AppRoutingModule,
   ],
   providers: [
     ConfigOptionsService,
