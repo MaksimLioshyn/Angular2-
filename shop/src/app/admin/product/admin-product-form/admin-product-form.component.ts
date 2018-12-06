@@ -8,7 +8,7 @@ import {switchMap} from 'rxjs/operators';
 import {of, Subscription} from 'rxjs';
 
 @Component({
-  selector: 'admin-product-form',
+  selector: 'app-admin-product-form',
   templateUrl: './admin-product-form.component.html',
   styleUrls: ['./admin-product-form.component.css']
 })
@@ -46,7 +46,7 @@ export class AdminProductFormComponent implements OnInit, OnDestroy {
         .subscribe(
             product => this.back(),
             err => console.log(err)
-        )
+        );
   }
 
   back() {

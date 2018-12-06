@@ -1,6 +1,20 @@
 <button type="submit" (click)="onAdd()">Add</button>
-<ul>
-  <li *ngFor="let product of products">
-    <admin-product [product]="product" (remove)="onRemove($event)" (update)="onUpdate($event)"></admin-product>
-  </li>
-</ul>
+<div style="overflow-x:auto;">
+<table>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Is Available</th>
+      <th>Stores</th>
+      <th>Set Available</th>
+      <th>Action</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products"
+      app-admin-product [product]="product" (remove)="onRemove($event)" (update)="onUpdate($event)">
+    </tr>
+    </tbody>
+  </table>
+</div>

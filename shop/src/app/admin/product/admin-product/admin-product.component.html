@@ -1,9 +1,19 @@
-<span>id: {{product.id}} </span>
-<span>name: {{product.name}} </span>
-<span>price: {{product.price | currency: 'USD'}}</span>
-<span>isAvailable: {{product.isAvailable}}</span>
-
-<button *ngIf="!product.isAvailable" (click)="onAvailable()">Available</button>
-<button *ngIf="product.isAvailable" (click)="onNotAvailable()">Not Available</button>
-<button (click)="onRemove()">Remove</button>
-<button (click)="onEdit()">Edit</button>
+<td>{{ product.name | uppercase }}</td>
+<td>{{ product.description }}</td>
+<td>{{ product.price | currency: "Тугрики" }}</td>
+<td>{{ product.isAvailable }}</td>
+<td>
+  <div *ngIf="!!product.stores && product.stores.length > 0">
+    {{ product.stores }}
+  </div>
+</td>
+<td>
+  <button *ngIf="!product.isAvailable" (click)="onAvailable()">
+    Available
+  </button>
+  <button *ngIf="product.isAvailable" (click)="onNotAvailable()">
+    Not Available
+  </button>
+</td>
+<td><button (click)="onRemove()">Remove</button></td>
+<td><button (click)="onEdit()">Edit</button></td>

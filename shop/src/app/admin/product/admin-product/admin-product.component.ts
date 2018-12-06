@@ -3,7 +3,7 @@ import {Product} from '../../../product/models/product.model';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'admin-product',
+  selector: '[app-admin-product]',
   templateUrl: './admin-product.component.html',
   styleUrls: ['./admin-product.component.css']
 })
@@ -33,6 +33,6 @@ export class AdminProductComponent implements OnInit {
   }
 
   onEdit() {
-    this.router.navigate(['./edit', this.product.id], {relativeTo: this.route})
+    this.router.navigate(['./edit', this.product.id], {relativeTo: this.route});
   }
 }
