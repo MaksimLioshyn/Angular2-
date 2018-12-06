@@ -1,18 +1,8 @@
-<div style="text-align:center">
-  <header>
-    <span header-text>Welcome to {{ application }} {{ version }}!</span>
-  </header>
+<div class="wrapper">
+  <app-layout>
+      <div class="header-text">
+          Welcome to {{ application }} {{ version }}!
+         </div>
+       <router-outlet></router-outlet>
+  </app-layout>
 </div>
-<div  style="text-align:right"><span>Today: {{today | date: 'short'}}</span></div>
-<div style="text-align:right">
-    <span>{{getUsername()}}</span>
-    <a *ngIf="isAuthenticated()" (click)="logout()">Logout</a>
-    <a *ngIf="!isAuthenticated()" routerLink="/login">Login</a>
-    <span>Today: {{today | date: 'short'}}</span>
-  </div>
-  <nav *ngIf="isAdmin()">
-    <a routerLink="/admin">Admin</a>
-    <a routerLink="/products">Products</a>
-    <a routerLink="/cart">Cart ({{cartSize()}})</a>
-  </nav>
-<router-outlet></router-outlet>

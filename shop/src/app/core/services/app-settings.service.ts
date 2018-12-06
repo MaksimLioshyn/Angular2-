@@ -15,7 +15,10 @@ export class AppSettingsService {
   }
 
   private static getDefaultSettings(): AppSettings {
-    return {application: 'Default App Name', version: '0.0.0'}
+    return {
+      application: 'Default App Name Settings',
+    version: '0.0.0'
+  };
   }
 
   getSettings(): Observable<AppSettings> {

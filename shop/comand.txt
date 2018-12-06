@@ -22,3 +22,14 @@ ng g d core/directive/ChangeBackground --spec false
 ng g d core/directive/ChangeFontWeight --spec false
 
 ng g p core/pipes/sort-item --spec false
+
+ng g c blocks/header --routing -m app --spec false
+ng g c blocks/footer --routing -m app --spec false
+ng g c blocks/content --routing -m app --spec false
+ng g c blocks/leftMenu --routing -m app --spec false
+
+npm install bootstrap font-awesome
+ng generate module ui --module app.module
+ng generate component ui/layout
+ng generate component ui/header
+ng generate component ui/footer

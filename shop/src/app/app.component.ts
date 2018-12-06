@@ -2,10 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from './cart/cart.services';
 import { CONSTANTS, ConstantsService } from './core/services/constants.service';
-import { UserService } from './core/services/user.service';
-import {AppSettingsService} from './core/services/app-settings.service';
+import {UserService, AppSettingsService} from './core/services/index';
 import {AppSettings} from '../app/core/model/app-settings';
-
 
 @Component({
   selector: 'app-root',
@@ -15,7 +13,6 @@ import {AppSettings} from '../app/core/model/app-settings';
 export class AppComponent implements OnInit {
   application: string;
   version: string;
-  today: number = Date.now();
 
   constructor(
     private cartService: CartService,

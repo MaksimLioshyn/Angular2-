@@ -8,14 +8,17 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ProductModule} from './product/product.module';
 import {CartModule} from './cart/cart.module';
-import {ConfigOptionsService} from './core/services/config-options.service';
+
+import {CONSTANTS, ConfigOptionsService, APP_SETTINGS_KEY } from './core/services';
+
 import {CoreModule} from './core/core.module';
-import {CONSTANTS} from './core/services/constants.service';
 import {SharedModule} from './shared/shared.module';
+
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,14 +30,24 @@ import {SharedModule} from './shared/shared.module';
     CartModule,
     ProductModule,
     AppRoutingModule,
+
+    UiModule,
   ],
   providers: [
     ConfigOptionsService,
     {
       provide: CONSTANTS,
-      useValue: {Application: 'Shop-Shop-Shop', Version: '1.0.0.0'}}
+      useValue: {
+        Application: 'Shop-Shop-Shop',
+        Version: '1.0.0.0'
+      }
+    }
   ],
 
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    localStorage.removeItem(APP_SETTINGS_KEY);
+  }
+}
