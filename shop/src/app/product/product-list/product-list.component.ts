@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Product} from '../models/product.model';
-import {ProductServices} from '../product.services';
-import {CartService} from '../../cart/cart.services';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Product} from '../models/product.model';
+import {PRODUCT_SERVICE, ProductService} from '../service/product.service';
+import {CartService} from '../../cart/cart.services';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +15,8 @@ export class ProductListComponent implements OnInit {
   orderBy: string;
   sortingDirection: boolean;
 
-  constructor(private productService: ProductServices,
+  constructor(
+    @Inject(PRODUCT_SERVICE) private productService: ProductService,
     private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router) {}

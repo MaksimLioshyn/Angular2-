@@ -1,28 +1,35 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+
 import {LocalStorageService} from './services/local-storage.service';
-import {ChangeBackgroundDirective} from './directive/change-background.directive';
-import {ChangeFontWeightDirective} from './directive/change-font-weight.directive';
-import { SortItemPipe } from './pipes/sort-item.pipe';
 import {UserService} from './services/user.service';
+import {AppSettingsService} from './services/app-settings.service';
+
 import {AdminGuard} from './guard/admin.guard';
+
+import {DefaultHeadersInterceptor} from './interceptor/default-headers.interceptor';
+import {TimingInterceptor} from './interceptor/timing.interceptor';
 
 
 @NgModule({
-  imports: [],
-  declarations: [
-    ChangeBackgroundDirective,
-    ChangeFontWeightDirective,
-    SortItemPipe
-  ],
-  exports: [
-    ChangeBackgroundDirective,
-    ChangeFontWeightDirective,
-    SortItemPipe
-  ],
+  imports: [HttpClientModule],
+  declarations: [],
+  exports: [],
   providers: [
     LocalStorageService,
     UserService,
-    AdminGuard
+    AdminGuard,
+    AppSettingsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DefaultHeadersInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TimingInterceptor,
+      multi: true,
+    }
   ]
 })
 export class CoreModule {

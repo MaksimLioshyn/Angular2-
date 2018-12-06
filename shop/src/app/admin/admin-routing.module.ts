@@ -1,8 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminComponent} from './admin.component';
-import {AdminProductListComponent} from './admin-product-list/admin-product-list.component';
-import {AdminProductFormComponent} from './admin-product-form/admin-product-form.component';
+import {AdminProductFormComponent, AdminProductListComponent} from './product';
 import {AdminGuard} from '../core/guard/admin.guard';
 
 const routes: Routes = [
@@ -16,13 +15,20 @@ const routes: Routes = [
         component: AdminProductListComponent
       },
       {
+        path: 'add',
+        component: AdminProductFormComponent,
+      },
+      {
         path: 'edit/:id',
         component: AdminProductFormComponent,
       },
     ]
   },
- ];
- @NgModule({
+
+
+];
+
+@NgModule({
   imports: [
     RouterModule.forChild(routes)
   ],

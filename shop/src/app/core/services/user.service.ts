@@ -25,12 +25,12 @@ export class UserService {
 
   login(username: string, password: string): Promise<User> {
     return new Promise<User>((resolve, reject) => {
-      const user: User = users.find(u => u.username === username && (u.id + '') === password);
+      const user: User = users.find(u => u.username === username && u.username === password);
       if (user) {
         this._user = user;
         resolve(user);
       } else {
-        reject({code: 1, message: 'Password is not correct. [hint: user=1, admin=2]'});
+        reject({code: 1, message: 'Password is not correct. [user: user, admin: admin]'});
       }
     });
   }

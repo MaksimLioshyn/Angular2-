@@ -44,6 +44,14 @@
       "category": "Printer",
       "isAvailable": true,
       "stores": []
+    },
+    {
+      "name": "New product",
+      "description": "New product Description",
+      "price": "1000",
+      "isAvailable": true,
+      "stores": "Gomel",
+      "id": 6
     }
   ]
 }

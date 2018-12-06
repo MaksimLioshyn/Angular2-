@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CartService } from './cart/cart.services';
 import { CONSTANTS, ConstantsService } from './core/services/constants.service';
 import { UserService } from './core/services/user.service';
+import {AppSettingsService} from './core/services/app-settings.service';
+import {AppSettings} from '../app/core/model/app-settings';
 
 
 @Component({
@@ -19,12 +21,16 @@ export class AppComponent implements OnInit {
     private cartService: CartService,
     @Inject(CONSTANTS) private CONSTANT: ConstantsService,
     private userService: UserService,
-    private router: Router) {
+    private router: Router,
+    private appSettingsService: AppSettingsService) {
   }
 
   ngOnInit() {
-    this.application = this.CONSTANT.Application;
-    this.version = this.CONSTANT.Version;
+    this.appSettingsService.getSettings()
+    .subscribe((settings: AppSettings) => {
+      this.application = settings.application;
+      this.version = settings.version;
+    });
   }
 
   cartSize(): number {

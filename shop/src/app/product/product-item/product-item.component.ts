@@ -1,14 +1,16 @@
-import {Optional, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../models/product.model';
 import {CHARACTERS_09, GeneratorService, GeneratorServiceFactory} from '../../core/services/generator.service';
-import { ConfigOptionsService } from '../../core/services/config-options.service';
 
 @Component({
   selector: '[app-product-item]',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css'],
   providers: [
-    {provide: GeneratorService, useFactory: GeneratorServiceFactory(10, CHARACTERS_09)}
+    {
+      provide: GeneratorService,
+      useFactory: GeneratorServiceFactory(10, CHARACTERS_09)
+    }
     ]
 })
 export class ProductItemComponent implements OnInit {
@@ -18,8 +20,7 @@ export class ProductItemComponent implements OnInit {
   hash: string;
 
   constructor(
-    @Optional() private generatorService: GeneratorService,
-    @Optional() private configOptionsService: ConfigOptionsService
+    private generatorService: GeneratorService,
     ) {
   }
 
@@ -29,7 +30,6 @@ export class ProductItemComponent implements OnInit {
 
   onBuy() {
     this.addToCart.emit(this.product);
-    this.configOptionsService.localStorageService.setItem(this.product.id.toString(), this.hash);
   }
 
 }
