@@ -50,8 +50,16 @@
       "description": "New product Description",
       "price": "1000",
       "isAvailable": true,
-      "stores": "Gomel",
+      "stores": "Mozur",
       "id": 6
+    },
+    {
+      "name": "Some device",
+      "description": "Description",
+      "price": "120",
+      "isAvailable": true,
+      "stores": "NNN",
+      "id": 7
     }
   ]
 }

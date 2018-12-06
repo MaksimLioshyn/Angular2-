@@ -3,17 +3,22 @@ import {StoreProduct} from '../models/store.product';
 import {Product} from '../models/product.model';
 import {Observable, of} from 'rxjs';
 import {ProductService} from './product.service';
+import {GeneratorService} from '../../core/services/generator.service';
 
 @Injectable()
 export class DefaultProductService implements ProductService {
 
+  constructor(
+    private generatorService: GeneratorService
+    ) {}
+
   private products: Array<Product> = [
-    new StoreProduct(1, 'Wireless Mouse', 'Bluetooth wireless super small mouse', 350, true, []),
-    new StoreProduct(2, 'Monitor 22', 'Samsung 22inch screen', 2500, true, []),
-    new StoreProduct(3, 'Monitor 20', 'LG 20inch screen', 2300,  false, []),
-    new StoreProduct(4, 'Standard Keyboard', 'Logitech keyboard', 150, true, []),
-    new StoreProduct(5, 'Color Printer', 'M590 Printer', 1350, true, []),
-    new StoreProduct(6, 'HP ProBook', 'HP ProBook', 12000, true, ['Comfy', 'Eldorado', 'PSShop'])
+    new StoreProduct(1, 'Wireless Mouse', 'Bluetooth wireless super small mouse', 350, this.generatorService.generate(), true, []),
+    new StoreProduct(2, 'Monitor 22', 'Samsung 22inch screen', 2500, this.generatorService.generate(), true, []),
+    new StoreProduct(3, 'Monitor 20', 'LG 20inch screen', 2300, this.generatorService.generate(),  false, []),
+    new StoreProduct(4, 'Standard Keyboard', 'Logitech keyboard', 150, this.generatorService.generate(), true, []),
+    new StoreProduct(5, 'Color Printer', 'M590 Printer', 1350, this.generatorService.generate(), true, []),
+    new StoreProduct(6, 'HP ProBook', 'HP ProBook', 12000, this.generatorService.generate(), true, ['Comfy', 'Eldorado', 'PSShop'])
   ];
 
   getAll(): Promise<Array<Product>> {

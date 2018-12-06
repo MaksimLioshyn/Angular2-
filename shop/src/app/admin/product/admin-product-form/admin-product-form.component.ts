@@ -15,7 +15,6 @@ import {of, Subscription} from 'rxjs';
 export class AdminProductFormComponent implements OnInit, OnDestroy {
 
   product: Product;
-
   private sub: Subscription;
 
   constructor(private route: ActivatedRoute,

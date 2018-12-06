@@ -11,9 +11,9 @@ import {PRODUCT_SERVICE, ProductService} from '../service/product.service';
   styleUrls: ['./product-view.component.css']
 })
 export class ProductViewComponent implements OnInit, OnDestroy {
+
   product: Product;
   private sub: Subscription;
-
 
   constructor(private route: ActivatedRoute,
               @Inject(PRODUCT_SERVICE) private productService: ProductService,

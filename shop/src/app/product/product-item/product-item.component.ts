@@ -20,7 +20,7 @@ export class ProductItemComponent implements OnInit {
   hash: string;
 
   constructor(
-    private generatorService: GeneratorService,
+    private generatorService: GeneratorService
     ) {
   }
 

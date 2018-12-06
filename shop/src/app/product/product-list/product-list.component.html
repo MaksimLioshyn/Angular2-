@@ -23,9 +23,7 @@
       </th>
     </tr>
     <th>Name</th>
-    <th>Description</th>
     <th>Price</th>
-    <th>Hash</th>
     <th>Is Available</th>
     <th>Stores</th>
     <th>Action</th>
@@ -35,6 +33,7 @@
       app-product-item
       [product]="product"
       (addToCart)="onAddToCart($event)"
+      (click)="onView(product.id)"
       appChangeFontWeight="bold"
     ></tr>
   </tbody>

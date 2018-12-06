@@ -6,6 +6,7 @@ export class StoreProduct implements Product {
               public name: string,
               public description: string,
               public price: number,
+              public hash: string,
               public isAvailable: boolean,
               public stores?: string[]) {
   }
