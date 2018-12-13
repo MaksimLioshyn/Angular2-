@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { CartService } from '../cart.services';
-import { Cart, ICart } from '../models/cart.model';
-import { GeneratorService } from '../../core/services/generator.service';
+import { ICart } from '../models/cart.model';
 import { ConfigOptionsService } from '../../core/services/config-options.service';
 
 @Component({

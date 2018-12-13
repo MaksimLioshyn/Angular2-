@@ -4,10 +4,10 @@
       "id": 1,
       "name": "Wireless Mouse",
       "description": "Bluetooth wireless super small mouse",
-      "price": 350,
+      "price": "550",
       "category": "Mouse",
       "isAvailable": true,
-      "stores": "Vasya,Dara,3"
+      "stores": ""
     },
     {
       "id": 2,
@@ -31,7 +31,7 @@
       "id": 4,
       "name": "Standard Keyboard",
       "description": "Logitech keyboard",
-      "price": 150,
+      "price": "450",
       "category": "Keyboard",
       "isAvailable": true,
       "stores": []

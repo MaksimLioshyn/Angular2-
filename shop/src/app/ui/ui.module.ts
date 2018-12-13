@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FooterComponent, HeaderComponent, LayoutComponent} from './index';
-import { UiRoutingModule } from './ui-routing.module';
+import {AppRoutingModule} from '../app-routing.module';
 
 @NgModule({
   imports: [
-    UiRoutingModule,
+    AppRoutingModule,
     CommonModule
   ],
   declarations: [

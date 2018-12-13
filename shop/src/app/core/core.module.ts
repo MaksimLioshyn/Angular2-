@@ -1,5 +1,5 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {LocalStorageService} from './services/local-storage.service';
 import {UserService} from './services/user.service';
@@ -12,7 +12,7 @@ import {TimingInterceptor} from './interceptor/timing.interceptor';
 
 
 @NgModule({
-  imports: [HttpClientModule],
+  imports: [],
   declarations: [],
   exports: [],
   providers: [
