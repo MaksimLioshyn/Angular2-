@@ -24,7 +24,7 @@
       "description": "LG 20inch screen",
       "price": 2300,
       "category": "Screen",
-      "isAvailable": true,
+      "isAvailable": false,
       "stores": []
     },
     {
