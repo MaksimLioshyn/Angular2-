@@ -8,23 +8,24 @@ import {SortItemPipe} from './pipes/sort-item.pipe';
 import {LoginFormComponent} from './login-form/login-form.component';
 import {PathNotFoundComponent} from './path-not-found/path-not-found.component';
 
+const importses = [
+  ChangeBackgroundDirective,
+  ChangeFontWeightDirective,
+  SortItemPipe,
+  PathNotFoundComponent,
+  LoginFormComponent
+];
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule
   ],
   declarations: [
-    ChangeBackgroundDirective,
-    ChangeFontWeightDirective,
-    SortItemPipe,
-    PathNotFoundComponent,
-    LoginFormComponent],
+    importses
+  ],
   exports: [
-    ChangeBackgroundDirective,
-    ChangeFontWeightDirective,
-    SortItemPipe,
-    PathNotFoundComponent,
-    LoginFormComponent
+    importses
   ],
   providers: []
 })
