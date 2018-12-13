@@ -37,7 +37,9 @@ export class AdminProductFormComponent implements OnInit, OnDestroy {
         );
   }
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub === null) {
+      this.sub.unsubscribe();
+    }
   }
 
   save() {
