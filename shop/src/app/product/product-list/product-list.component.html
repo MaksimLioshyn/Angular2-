@@ -29,7 +29,7 @@
     <th>Action</th>
   </thead>
   <tbody>
-    <tr *ngFor="let product of (products | async | sortItem: orderBy:sortingDirection)"
+    <tr *ngFor="let product of ( (products$ | async | sortItem: orderBy:sortingDirection))"
       app-product-item
       [product]="product"
       (addToCart)="onAddToCart($event)"

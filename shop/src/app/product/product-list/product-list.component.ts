@@ -1,8 +1,14 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import {Product} from '../models/product.model';
-import {PRODUCT_SERVICE, ProductService} from '../service/product.service';
+// import {PRODUCT_SERVICE, ProductService} from '../service/product.service';
 import {CartService} from '../../cart/cart.services';
+import {AppState} from '../../core/+store/app.state';
+import {select, Store} from '@ngrx/store';
+import {GetProducts, getProductsData, getProductsError} from '../../core/+store/product';
+
+import {Go} from '../../core/+store/router';
 
 @Component({
   selector: 'app-product-list',
@@ -11,18 +17,21 @@ import {CartService} from '../../cart/cart.services';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Promise<Array<Product>>;
+  products$: Observable<Array<Product>>;
+  productsError$: Observable<any>;
   orderBy: string;
   sortingDirection: boolean;
 
   constructor(
-    @Inject(PRODUCT_SERVICE) private productService: ProductService,
+    private store: Store<AppState>,
     private cartService: CartService,
-    private route: ActivatedRoute,
-    private router: Router) {}
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit() {
-    this.products = this.productService.getAll();
+    this.store.dispatch(new GetProducts());
+     this.products$ = this.store.pipe(select(getProductsData));
+    this.productsError$ = this.store.pipe(select(getProductsError));
     this.sortingDirection = false;
   }
 
@@ -37,6 +46,6 @@ export class ProductListComponent implements OnInit {
   }
 
   onView(id: number): void {
-    this.router.navigate([{outlets: {product: [id]}}], {relativeTo: this.route});
+    this.store.dispatch(new Go({path: [{outlets: {product: [id]}}], extras: {relativeTo: this.route}}));
   }
 }

@@ -11,11 +11,17 @@ import { ProductComponent } from './product.component';
 import {SharedModule} from '../shared/shared.module';
 import {HttpProductService} from './service/http-product.service';
 
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {ProductsEffects, productsReducer} from '../core/+store/product';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
+    StoreModule.forFeature('products', productsReducer),
+    EffectsModule.forFeature([ProductsEffects]),
     ProductRoutingModule
   ],
   declarations: [

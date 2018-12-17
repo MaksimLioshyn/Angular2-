@@ -24,7 +24,7 @@
       "description": "LG 20inch screen",
       "price": 2300,
       "category": "Screen",
-      "isAvailable": false,
+      "isAvailable": true,
       "stores": []
     },
     {
@@ -67,6 +67,14 @@
       "price": "120",
       "isAvailable": true,
       "id": 8
+    },
+    {
+      "name": "HDD",
+      "description": "SSD HDD",
+      "price": "152",
+      "isAvailable": true,
+      "stores": "Galamabamba",
+      "id": 9
     }
   ]
 }

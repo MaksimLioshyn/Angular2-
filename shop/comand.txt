@@ -33,3 +33,12 @@ ng generate module ui --module app.module
 ng generate component ui/layout
 ng generate component ui/header
 ng generate component ui/footer
+
+ng g m core/+store/core-store --routing --spec false
+ng g s core/+store/cart/cart -m --spec false
+
+npm install @ngrx/{store, entity, effects, router-store, store-devtools}
+
+ng g class core/+store/product/productState --routing -m app --spec false
+
+
