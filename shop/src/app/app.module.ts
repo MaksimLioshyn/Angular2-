@@ -16,6 +16,7 @@ import {SharedModule} from './shared/shared.module';
 
 import { UiModule } from './ui/ui.module';
 import { CoreStoreModule } from './core/+store/core-store.module';
+import { OrderModule } from './order/order.module';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,11 @@ import { CoreStoreModule } from './core/+store/core-store.module';
     CoreModule,
     CartModule,
     ProductModule,
-    AppRoutingModule,
-
     UiModule,
-
     CoreStoreModule,
+
+    OrderModule,
+    AppRoutingModule
   ],
   providers: [
     ConfigOptionsService,

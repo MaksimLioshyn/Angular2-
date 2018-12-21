@@ -1,7 +1,13 @@
 import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Store} from '@ngrx/store';
+
 import {CartService} from '../cart.services';
-import {Cart, ICart} from '../models/cart.model';
+import {ICart} from '../models/cart.model';
 import {CartItemComponent} from '../cart-item/cart-item.component';
+
+import {Go} from '../../core/+store/router';
+import {AppState} from '../../core/+store/app.state';
+
 
 @Component({
   selector: 'app-cart-list',
@@ -16,8 +22,10 @@ export class CartListComponent implements OnInit, AfterViewInit {
   orderBy: string;
   sortingDirection: boolean;
 
-  constructor(private cartService: CartService) {
-  }
+  constructor(
+    private store: Store<AppState>,
+    private cartService: CartService
+    ) {  }
 
   ngOnInit() {
     this.items = this.cartService.getAll();
@@ -52,4 +60,7 @@ export class CartListComponent implements OnInit, AfterViewInit {
     this.sortingDirection = value;
   }
 
+  order() {
+    this.store.dispatch(new Go({path: ['/order']}));
+  }
 }

@@ -41,4 +41,5 @@ npm install @ngrx/{store, entity, effects, router-store, store-devtools}
 
 ng g class core/+store/product/productState --routing -m app --spec false
 
-
+ng g m order --routing -m app --spec false
+ng g c order/order-form -m=order --spec false

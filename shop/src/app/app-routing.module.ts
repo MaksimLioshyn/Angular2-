@@ -4,6 +4,7 @@ import {CartListComponent} from './cart/cart-list/cart-list.component';
 import {PathNotFoundComponent} from './shared/path-not-found/path-not-found.component';
 import {LoginFormComponent} from './shared/login-form/login-form.component';
 import {AdminGuard} from './core/guard/admin.guard';
+import {OrderFormComponent} from './order/order-form/order-form.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: './product/product.module#ProductModule'
+  },
+  {
+    path: 'order',
+    component: OrderFormComponent,
   },
   {
     path: 'login',
