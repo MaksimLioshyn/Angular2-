@@ -60,7 +60,10 @@ export class CartListComponent implements OnInit, AfterViewInit {
     this.sortingDirection = value;
   }
 
-  order() {
+  orderForm() {
     this.store.dispatch(new Go({path: ['/order']}));
+  }
+  orderProcess() {
+    this.store.dispatch(new Go({path: ['/processorder']}));
   }
 }
