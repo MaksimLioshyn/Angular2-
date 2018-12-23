@@ -5,6 +5,7 @@ import {PathNotFoundComponent} from './shared/path-not-found/path-not-found.comp
 import {LoginFormComponent} from './shared/login-form/login-form.component';
 import {AdminGuard} from './core/guard/admin.guard';
 import {OrderFormComponent} from './order/order-form/order-form.component';
+import {ProcessOrderComponent} from './order/process-order/process-order.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: './product/product.module#ProductModule'
+  },
+  {
+    path: 'processorder',
+    component: ProcessOrderComponent,
   },
   {
     path: 'order',

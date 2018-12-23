@@ -43,3 +43,4 @@ ng g class core/+store/product/productState --routing -m app --spec false
 
 ng g m order --routing -m app --spec false
 ng g c order/order-form -m=order --spec false
+ng g c order/process-order -m=order --spec false

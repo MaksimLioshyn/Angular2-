@@ -18,6 +18,7 @@ import { UiModule } from './ui/ui.module';
 import { CoreStoreModule } from './core/+store/core-store.module';
 import { OrderModule } from './order/order.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
