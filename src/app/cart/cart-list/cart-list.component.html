@@ -1,6 +1,6 @@
 <div *ngIf="!isEmpty(); else: emptyCartTemplate">
   <header><span header-text>Items in the cart:</span></header>
-  <button (click)="onClear()">Clear all</button>
+  <button id="clearCart" (click)="onClear()">Clear all</button>
 
   <table>
     <thead>
@@ -46,8 +46,8 @@
     </tr>
   </table>
 
-  <button (click)="orderForm()">Make an order form</button>
-  <button (click)="orderProcess()">Make an order process form</button>
+  <button id="goToOrder" (click)="orderForm()">Make an order form</button>
+  <button id="goToOrderProcess" (click)="orderProcess()">Make an order process form</button>
 
   <ng-template #emptyCartTemplate>
     <header><span header-text>Products cart is empty</span></header>
