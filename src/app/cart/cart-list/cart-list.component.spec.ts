@@ -1,76 +1,92 @@
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
-import {By} from '@angular/platform-browser';
-import {Store} from '@ngrx/store';
-
+import { SortItemPipe } from './../../shared/pipes/sort-item.pipe';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CartService } from '../cart.services';
 import { CartListComponent } from './cart-list.component';
-import {CartService} from '../cart.services';
-import {SortItemPipe} from '../../shared/pipes/sort-item.pipe';
-import {Cart} from '../models/cart.model';
-
 
 describe('CartListComponent', () => {
-  let component: CartListComponent;
-  let fixture: ComponentFixture<CartListComponent>;
-  let cartService: CartService;
-  let storeSpy: any;
+    let comp: CartListComponent;
+    let fixture: ComponentFixture<CartListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [CartListComponent, SortItemPipe],
-      providers: [
-        CartService,
-        {provide: Store, useValue: jasmine.createSpyObj('store', ['dispatch'])}
-      ],
-      schemas: [ NO_ERRORS_SCHEMA ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        const storeStub = {
+            dispatch: () => ({})
+        };
+        const cartServiceStub = {
+            getAll: () => ({}),
+            clear: () => ({}),
+            isEmpty: () => ({}),
+            getTotalPrice: () => ({})
+        };
+        TestBed.configureTestingModule({
+            declarations: [ CartListComponent, SortItemPipe ],
+            schemas: [ NO_ERRORS_SCHEMA ],
+            providers: [
+                { provide: Store, useValue: storeStub },
+                { provide: CartService, useValue: cartServiceStub }
+            ]
+        });
+        fixture = TestBed.createComponent(CartListComponent);
+        comp = fixture.componentInstance;
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartListComponent);
-    component = fixture.componentInstance;
-    cartService = fixture.debugElement.injector.get(CartService);
-    storeSpy = fixture.debugElement.injector.get(Store);
+    it('can load instance', () => {
+        expect(comp).toBeTruthy();
+    });
 
-    fixture.detectChanges();
-  });
+    describe('ngOnInit', () => {
+        it('makes expected calls', () => {
+            const cartServiceStub: CartService = fixture.debugElement.injector.get(CartService);
+            spyOn(cartServiceStub, 'getAll');
+            comp.ngOnInit();
+            expect(cartServiceStub.getAll).toHaveBeenCalled();
+        });
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    describe('onClear', () => {
+        it('makes expected calls', () => {
+            const cartServiceStub: CartService = fixture.debugElement.injector.get(CartService);
+            spyOn(cartServiceStub, 'clear');
+            comp.onClear();
+            expect(cartServiceStub.clear).toHaveBeenCalled();
+        });
+    });
 
-  it('should display empty cart', () => {
-    spyOn(cartService, 'getAll').and.returnValue([]);
-    component.ngOnInit();
-    fixture.detectChanges();
+    describe('isEmpty', () => {
+        it('makes expected calls', () => {
+            const cartServiceStub: CartService = fixture.debugElement.injector.get(CartService);
+            spyOn(cartServiceStub, 'isEmpty');
+            comp.isEmpty();
+            expect(cartServiceStub.isEmpty).toHaveBeenCalled();
+        });
+    });
 
-    expect(fixture.debugElement.query(By.css('[header-text]')).nativeElement.textContent).toEqual('Products cart is empty');
-  });
+    describe('getTotalPrice', () => {
+        it('makes expected calls', () => {
+            const cartServiceStub: CartService = fixture.debugElement.injector.get(CartService);
+            spyOn(cartServiceStub, 'getTotalPrice');
+            comp.getTotalPrice();
+            expect(cartServiceStub.getTotalPrice).toHaveBeenCalled();
+        });
+    });
 
-  it('should display items in the cart', () => {
-    spyOn(cartService, 'getAll').and.returnValue([new Cart(1, '1', 1, 1), new Cart(2, '2', 2, 2)]);
-    spyOn(cartService, 'isEmpty').and.returnValue(false);
-    component.ngOnInit();
-    fixture.detectChanges();
+    describe('orderForm', () => {
+        it('makes expected calls', () => {
+            const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
+            spyOn(storeStub, 'dispatch');
+            comp.orderForm();
+            expect(storeStub.dispatch).toHaveBeenCalled();
+        });
+    });
 
-    expect(fixture.debugElement.query(By.css('[header-text]')).nativeElement.textContent).toEqual('Items in the cart:');
-    expect(fixture.debugElement.queryAll(By.css('cart-item')).length).toEqual(2);
-  });
-
-  it('should redirect to order page', () => {
-    spyOn(cartService, 'getAll').and.returnValue([new Cart(1, '1', 1, 1), new Cart(2, '2', 2, 2)]);
-    spyOn(cartService, 'isEmpty').and.returnValue(false);
-    component.ngOnInit();
-    fixture.detectChanges();
-
-    const goToOrderButton = <HTMLButtonElement>fixture.debugElement.query(By.css('#goToOrder')).nativeElement;
-    goToOrderButton.click();
-
-    expect(storeSpy.dispatch.calls.count()).toEqual(1);
-    expect(storeSpy.dispatch.calls.mostRecent().args[0].payload.path).toEqual(['/order']);
-  });
+    describe('orderProcess', () => {
+        it('makes expected calls', () => {
+            const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
+            spyOn(storeStub, 'dispatch');
+            comp.orderProcess();
+            expect(storeStub.dispatch).toHaveBeenCalled();
+        });
+    });
 
 });

@@ -1,81 +1,45 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CartService } from '../cart.services';
+import { ConfigOptionsService } from '../../core/services/config-options.service';
+import { CartItemComponent } from './cart-item.component';
 
-import {CartItemComponent} from './cart-item.component';
-import {GeneratorService} from '../../core/services/generator.service';
-import {Cart} from '../models/cart.model';
-import {By} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
-import {CartService} from '../cart.services';
+describe('CartItemComponent', () => {
+    let comp: CartItemComponent;
+    let fixture: ComponentFixture<CartItemComponent>;
 
-const generatorServiceStub = <GeneratorService>{
-  generate: function () {
-    return 'hash_value';
-  }
-};
-
-describe('CartComponent', () => {
-  let component: CartItemComponent;
-  let fixture: ComponentFixture<CartItemComponent>;
-  let cartService: CartService;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [CartItemComponent],
-      providers: [
-        CartService,
-        {provide: GeneratorService, useValue: generatorServiceStub}
-      ]
-    })
-        .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartItemComponent);
-    component = fixture.componentInstance;
-    cartService = fixture.debugElement.injector.get(CartService);
-
-    component.item = new Cart(1, 'item_name', 2.2, 3);
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should display item content', async(() => {
-    fixture.whenStable().then(() => {
-      expect(fixture.debugElement.query(By.css('.item')).nativeElement.textContent).toEqual('name: item_name price: 2.2 quantity: ');
-      expect(fixture.debugElement.query(By.css('.item input')).nativeElement.value).toEqual('3');
+    beforeEach(() => {
+        const cartServiceStub = {
+            remove: () => ({})
+        };
+        const configOptionsServiceStub = {
+            localStorageService: {
+                getItem: () => ({})
+            }
+        };
+        TestBed.configureTestingModule({
+            declarations: [ CartItemComponent ],
+            schemas: [ NO_ERRORS_SCHEMA ],
+            providers: [
+                { provide: CartService, useValue: cartServiceStub },
+                { provide: ConfigOptionsService, useValue: configOptionsServiceStub }
+            ]
+        });
+        fixture = TestBed.createComponent(CartItemComponent);
+        comp = fixture.componentInstance;
     });
-  }));
 
-  it('should display hash', async(() => {
-    fixture.whenStable().then(() => {
-      expect(fixture.debugElement.query(By.css('.hash')).nativeElement.textContent).toEqual('hash: hash_value');
+    it('can load instance', () => {
+        expect(comp).toBeTruthy();
     });
-  }));
 
-  it('should update item quantity', async(() => {
-    const quantityInput = fixture.debugElement.query(By.css('.item input')).nativeElement as HTMLInputElement;
-    quantityInput.value = '5';
-    quantityInput.dispatchEvent(new Event('input'));
-
-    fixture.whenStable().then(() => {
-      expect(component.item.quantity === 5).toBeTruthy();
+    describe('onRemove', () => {
+        it('makes expected calls', () => {
+            const cartServiceStub: CartService = fixture.debugElement.injector.get(CartService);
+            spyOn(cartServiceStub, 'remove');
+            comp.onRemove();
+            expect(cartServiceStub.remove).toHaveBeenCalled();
+        });
     });
-  }));
-
-  it('should remove item', async(() => {
-    const cartServiceSpy = spyOn(cartService, 'remove')
-        .and.returnValue(true);
-
-        const removeButton = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
-    removeButton.click();
-
-    fixture.whenStable().then(() => {
-      expect(cartServiceSpy).toHaveBeenCalled();
-    });
-  }));
 
 });

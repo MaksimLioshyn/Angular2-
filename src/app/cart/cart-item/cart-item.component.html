@@ -1,3 +1,4 @@
+<div class="item">
 <td>
   {{item.name}}
 </td>
@@ -7,8 +8,9 @@
 <td>
   <input type="text" name="quantity" [(ngModel)]="item.quantity">
 </td>
+</div>
 <td>
-  {{hash}}
+  <span class="hash">{{hash}}</span>
 </td>
 <td>
   <button (click)="onRemove()">Remove</button>

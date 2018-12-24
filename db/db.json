@@ -5,7 +5,6 @@
       "name": "Wireless Mouse",
       "description": "Bluetooth wireless super small mouse",
       "price": "550",
-      "category": "Mouse",
       "isAvailable": true,
       "stores": ""
     },
@@ -14,7 +13,6 @@
       "name": "Monitor 22",
       "description": "Samsung 22inch screen",
       "price": 2500,
-      "category": "Screen",
       "isAvailable": true,
       "stores": []
     },
@@ -32,7 +30,6 @@
       "name": "Standard Keyboard",
       "description": "Logitech keyboard",
       "price": "450",
-      "category": "Keyboard",
       "isAvailable": true,
       "stores": []
     },
@@ -41,7 +38,6 @@
       "name": "Color Printer",
       "description": "M590 Printer",
       "price": 1350,
-      "category": "Printer",
       "isAvailable": true,
       "stores": []
     },

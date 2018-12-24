@@ -3,8 +3,6 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '
 import { Subscription } from 'rxjs';
 import {CustomValidators} from '../../core/validator/custom.validators';
 
-import {CartService} from '../../cart/cart.services';
-
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
@@ -21,8 +19,8 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     email: 'Please enter a valid email address.'
   };
 
-  constructor(private cartService: CartService,
-              private fb: FormBuilder) {
+  constructor(
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -59,11 +57,11 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   }
 
   private buildForm() {
-    return this.fb.group({
+    return this.formBuilder.group({
       name: ['', {validators: [Validators.required, Validators.minLength(3)]}],
       contactVia: 'email',
       email: ['', {validators: [Validators.required, Validators.email]}],
-      phones: this.fb.array([this.buildPhone()]),
+      phones: this.formBuilder.array([this.buildPhone()]),
     });
   }
 
@@ -101,7 +99,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   }
 
   private buildPhone() {
-    return this.fb.control('', [CustomValidators.phone]);
+    return this.formBuilder.control('', [CustomValidators.phone]);
   }
 
 }
